@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+	<settings cacheModelsEnabled="true" />
+	
+
+	<sqlMap resource="config/ibatis/mysql_manager_code.xml" />
+	<sqlMap resource="config/ibatis/mysql_manager.xml" />
+	<sqlMap resource="config/ibatis/mysql_target.xml" />
+	<sqlMap resource="config/ibatis/mysql_versions.xml" />
+	<sqlMap resource="config/ibatis/mysql_manager_heartrate.xml" />
+	<sqlMap resource="config/ibatis/mysql_manager_motion.xml" />
+	<sqlMap resource="config/ibatis/mysql_manager_position.xml" />
+	<sqlMap resource="config/ibatis/mysql_manager_sleep.xml" />
+	<sqlMap resource="config/ibatis/mysql_feedback.xml" />
+	<sqlMap resource="config/ibatis/mysql_remote_care.xml" />
+	<sqlMap resource="config/ibatis/mysql_contacts.xml" />
+	<sqlMap resource="config/ibatis/mysql_news.xml" />
+	<sqlMap resource="config/ibatis/mysql_scheduler_task.xml" />
+
+
+	<sqlMap resource="config/ibatis/mysql_ht_own_privilege.xml" />
+	<sqlMap resource="config/ibatis/mysql_ht_privilege.xml" />
+	<sqlMap resource="config/ibatis/mysql_ht_admin.xml" />
+	<sqlMap resource="config/ibatis/mysql_ht_company.xml" />
+	<sqlMap resource="config/ibatis/mysql_ht_sale_number.xml" />
+	<sqlMap resource="config/ibatis/mysql_ht_sale_detail.xml" />
+
+</sqlMapConfig>
+

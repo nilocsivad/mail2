@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:context="http://www.springframework.org/schema/context" xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring" xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		"
+	default-autowire="byName">
+
+
+
+	<!-- 
+	/// il8n 资源需在此处加载, 否则在 java 文件中执行
+	/// ContextLoader.getCurrentWebApplicationContext().getMessage(code, null, locale);
+	/// 取不到值
+	 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="il8n.messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="fallbackToSystemLocale" value="true" />
+	</bean>
+
+
+
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="com.iamVip.mail2">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+
+
+	<!-- 数据库及事务配置 -->
+<!-- 
+	<context:property-placeholder location="classpath:config/datasource-mysql.properties" />
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${mysql.url}" />
+		<property name="username" value="${mysql.username}" />
+		<property name="password" value="${mysql.password}" />
+	</bean>
+
+
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:config/sqlMapConfig.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 
+	/// 程序运行常量 ///
+	 -->
+	<bean class="com.iamVip.mail2.rs.util.ConstUtil" scope="singleton">
+		<!-- 
+		/// 后台包 ///
+		 -->
+		<constructor-arg name="controlPackage" type="java.lang.String" value="com.iamVip.mail2.request.req" />
+		<!-- 
+		/// 后台登录 Session Key ///
+		 -->
+		<constructor-arg name="controlSessionKey" type="java.lang.String" value="reqSession" />
+		<!-- 
+		/// 后台验证失败后跳转 URL ///
+		 -->
+		<constructor-arg name="controlNoSessionTo" type="java.lang.String" value="/req/admin/login.html" />
+		<!-- 
+		/// 前台包 ///
+		 -->
+		<constructor-arg name="viewPackage" type="java.lang.String" value="com.iamVip.mail2.request.web" />
+		<!-- 
+		/// 前台登录 Session Key ///
+		 -->
+		<constructor-arg name="viewSessionKey" type="java.lang.String" value="webSession" />
+		<!-- 
+		/// 前台验证失败后跳转 URL ///
+		 -->
+		<constructor-arg name="viewNoSessionTo" type="java.lang.String" value="/web/home/login.html" />
+		<!-- 
+		/// 验证码/邮件 重新发送时间间隔 ///
+		 -->
+		<constructor-arg name="validCodeSecond" type="java.lang.Integer" value="120" />
+		<!-- 
+		/// 服务器本地资源文件夹 ///
+		 -->
+		<constructor-arg name="resourceFolder" type="java.lang.String" value="D:/tmp/template1" />
+		<!-- 
+		/// 服务器本地资源文件夹对外访问前缀,对应 Tomcat <Context path="" /> ///
+		 -->
+		<constructor-arg name="resourcePrefix" type="java.lang.String" value="resTpl1" />
+		<!-- 
+		/// true:运行在服务器 false:测试环境 ///
+		 -->
+		<constructor-arg name="onServer" type="java.lang.Boolean" value="false" />
+	</bean>
+
+	<bean class="com.iamVip.mail2.rs.util.MailUtil">
+		<constructor-arg name="sendHost" type="java.lang.String" value="smtp.163.com" />
+		<constructor-arg name="smtpAuth" type="java.lang.Boolean" value="true" />
+		<constructor-arg name="timeout" type="java.lang.Long" value="360000" />
+		<!-- 邮箱地址 -->
+		<constructor-arg name="users">
+			<array value-type="java.lang.String">
+				<value>nilocsivad_cd@163.com</value>
+			</array>
+		</constructor-arg>
+		<!-- 邮箱登录密码 -->
+		<constructor-arg name="pwds">
+			<array value-type="java.lang.String">
+				<value></value>
+			</array>
+		</constructor-arg>
+	</bean>
+
+</beans>
