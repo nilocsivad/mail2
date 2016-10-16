@@ -6,7 +6,8 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>mail2 Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<url>http://repo.maven.apache.org/maven2</url>
+	<!-- <url>https://mvnrepository.com/artifact/</url> -->
 
 	<build>
 		<finalName>mail2</finalName>
