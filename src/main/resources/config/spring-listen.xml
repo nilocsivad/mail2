@@ -130,32 +130,4 @@
 		<constructor-arg name="onServer" type="java.lang.Boolean" value="false" />
 	</bean>
 
-	<bean name="mailSender" class="com.iamVip.mail2.rs.util.MailSender">
-		<!-- 邮箱地址 -->
-		<constructor-arg name="users">
-			<array value-type="java.lang.String">
-				<value>nilocsivad_cd@163.com</value>
-			</array>
-		</constructor-arg>
-		<!-- 邮箱登录密码 -->
-		<constructor-arg name="pwds">
-			<array value-type="java.lang.String">
-				<value></value>
-			</array>
-		</constructor-arg>
-		<!-- 
-		/// 设置属性值 ///
-		 -->
-		<property name="host" value="smtp.163.com" />
-		<property name="port">
-			<value>25</value>
-		</property>
-		<property name="javaMailProperties">
-			<props>
-				<prop key="mail.smtp.auth">true</prop>
-				<prop key="mail.smtp.timeout">360000</prop>
-			</props>
-		</property>
-	</bean>
-
 </beans>

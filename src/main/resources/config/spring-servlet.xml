@@ -80,7 +80,63 @@
 	</bean>
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="524288000"></property>
+		<property name="maxUploadSize" value="524288000" />
+	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<bean name="mailSender" class="com.iamVip.mail2.rs.util.MailSender">
+		<!-- 
+		/// 设置属性值 ///
+		 -->
+		<property name="host" value="smtp.163.com" />
+		<property name="port" value="25" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">360000</prop>
+			</props>
+		</property>
+		
+		<!-- 
+		/// 邮箱地址
+		 -->
+		<constructor-arg name="users">
+			<array value-type="java.lang.String">
+				<value>nilocsivad_cd@163.com</value>
+			</array>
+		</constructor-arg>
+		<!-- 
+		/// 邮箱登录密码
+		 -->
+		<constructor-arg name="pwds">
+			<array value-type="java.lang.String">
+				<value></value>
+			</array>
+		</constructor-arg>
+		<!-- 
+		/// 发送的HTML模板
+		 -->
+		<constructor-arg name="templates">
+			<array value-type="java.lang.String">
+				<value>mail0.html</value>
+			</array>
+		</constructor-arg>
+	</bean>
+
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="resourceLoaderPath" value="classpath:mail" />
+		<property name="preferFileSystemAccess" value="false" />
 	</bean>
 
 </beans>
