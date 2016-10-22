@@ -20,6 +20,17 @@ public class CalcOut {
 	public static void main(String[] args) throws Exception {
 
 		{
+			String fmt1 = "<entry key=\"%s\" value=\"/%s\" />\r\n";
+			for (char start = 'c'; start <= 'z'; start++) {
+				System.out.format(fmt1, (start + ":\\\\").toUpperCase(), "" + start + start + start);
+			}
+			String fmt2 = "<Context docBase=\"%s\" path=\"/%s\" />\r\n";
+			for (char start = 'c'; start <= 'z'; start++) {
+				System.out.format(fmt2, (start + ":\\\\").toUpperCase(), "" + start + start + start);
+			}
+		}
+
+		{
 			String fmt = "\"%d\", ";
 			for (int i = 1; i <= 10; ++i) {
 				System.out.format(fmt, i);
